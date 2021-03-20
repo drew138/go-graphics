@@ -17,17 +17,15 @@ import (
 func main() {
 	// f, _ := os.Open("./ej.png")
 	start := time.Now()
-	f, _ := os.Open("./lenna.png")
+	f, _ := os.Open("./ej.png")
 	// f, _ := os.Open("./lenna.png")
 
 	file := io.Reader(f)
 	i, format, _ := image.Decode(file)
-
-	img := processing.TransformImage(i, &kernels.Sharpen)
+	img := processing.TransformImage(i, &kernels.EdgeDetection)
 	// _ = processing.TransformImage(i, &kernels.EdgeDetection)
 	a, _ := os.Create("outimage." + format)
 	if format == "png" {
-
 		_ = png.Encode(a, img)
 	} else {
 		_ = jpeg.Encode(a, img, nil)

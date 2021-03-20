@@ -8,10 +8,6 @@ import (
 )
 
 func weighedSum(img image.Image, k *kernels.Kernel, x int, y int, maxY int, maxX int) (uint8, uint8, uint8, uint8) {
-	if x == 0 || y == 0 || y == maxY || x == maxX {
-		r, g, b, a := img.At(x, y).RGBA()
-		return uint8(r), uint8(g), uint8(b), uint8(a)
-	}
 	n, m := len(k.Kernel), len(k.Kernel[0])
 	l := int(n / 2)
 	var r, g, b, _ float32 = 0.0, 0.0, 0.0, 0.0
@@ -49,16 +45,28 @@ func weighedSum(img image.Image, k *kernels.Kernel, x int, y int, maxY int, maxX
 }
 
 func TransformImage(i image.Image, k *kernels.Kernel) *image.RGBA {
-
 	bounds := i.Bounds()
 	rgba := image.NewRGBA(bounds)
 	width, height := bounds.Max.X, bounds.Max.Y
-	for y := 0; y < height; y++ {
-		for x := 0; x < width; x++ {
+	for y := 1; y+1 <= height; y++ {
+		for x := 1; x+1 <= width; x++ {
 			r, g, b, a := weighedSum(i, k, x, y, height-1, width-1)
 			c := color.RGBA{uint8(r), uint8(g), uint8(b), uint8(a)}
 			rgba.Set(x, y, c)
 		}
 	}
+	for y := 0; y <= height; y++ {
+		c := rgba.At(1, y)
+		rgba.Set(0, y, c)
+		c2 := rgba.At(width-2, y)
+		rgba.Set(width-1, y, c2)
+	}
+	for x := 0; x <= width; x++ {
+		c := rgba.At(x, 1)
+		rgba.Set(x, 0, c)
+		c2 := rgba.At(x, height-2)
+		rgba.Set(x, height-1, c2)
+	}
+
 	return rgba
 }
