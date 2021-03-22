@@ -17,14 +17,14 @@ import (
 func main() {
 	// f, _ := os.Open("./ej.png")
 	start := time.Now()
-	f, _ := os.Open("./ej.png")
+	f, _ := os.Open("./lenna.png")
 	// f, _ := os.Open("./lenna.png")
 
 	file := io.Reader(f)
 	i, format, _ := image.Decode(file)
-	img := processing.TransformImage(i, &kernels.EdgeDetection)
+	img := processing.TransformImage(i, &kernels.GaussianBlur)
 	// _ = processing.TransformImage(i, &kernels.EdgeDetection)
-	a, _ := os.Create("outimage." + format)
+	a, _ := os.Create("lenna-gaussian-blur." + format)
 	if format == "png" {
 		_ = png.Encode(a, img)
 	} else {

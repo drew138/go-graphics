@@ -4,7 +4,7 @@ import (
 	"image"
 	"image/color"
 
-	kernels "github.com/drew138/go-graphics/processing/kernels"
+	"github.com/drew138/go-graphics/processing/kernels"
 )
 
 func weighedSum(img image.Image, k *kernels.Kernel, x int, y int, maxY int, maxX int) (uint8, uint8, uint8, uint8) {
