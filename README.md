@@ -20,31 +20,29 @@ Three formats are supported by the processing package (png, jpeg and jpg). The f
 
 Four basic kernels are provided by the kernel package:
 
+#### Example Transformations
+
+### Original Image
+
+<img src="./assets/lenna.png" width="200">
+
 ### Sharpen Kernel
 
-![Original Image](./assets/lenna.png)
-![Original Image](./assets/lenna-sharpen.png)
+<img src="./assets/lenna-sharpen.png" width="200">
 
 ### GaussianBlur Kernel
 
-![Original Image](./assets/lenna.png)
-![Original Image](./assets/lenna-gaussian-blur.png)
+<img src="./assets/lenna-gaussian-blur.png" width="200">
 
 ### EdgeDetection Kernel
 
 When applied on an image transformation, the resulting image displays the edges of objects in the image.
 
-#### Example Transformations
-
-Original Image
-![Original Image](./assets/lenna.png)
-Resulting Image
-![Original Image](./assets/lenna-edge-detection.png)
+<img src="./assets/lenna-edge-detection.png" width="200">
 
 ### BoxBlur Kernel
 
-![Original Image](./assets/lenna.png)
-![Original Image](./assets/lenna-box-blur.png)
+<img src="./assets/lenna-box-blur.png" width="200">
 
 ### Custom Kernel
 

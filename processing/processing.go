@@ -70,3 +70,17 @@ func TransformImage(i image.Image, k *kernels.Kernel) *image.RGBA {
 
 	return rgba
 }
+
+func CreateNegativeImage(i image.Image) *image.RGBA {
+	bounds := i.Bounds()
+	rgba := image.NewRGBA(bounds)
+	width, height := bounds.Max.X, bounds.Max.Y
+	for y := 0; y <= height; y++ {
+		for x := 0; x <= width; x++ {
+			r, g, b, a := i.At(x, y).RGBA()
+			c := color.RGBA{255 - uint8(r>>8), 255 - uint8(g>>8), 255 - uint8(b>>8), uint8(a)}
+			rgba.Set(x, y, c)
+		}
+	}
+	return rgba
+}

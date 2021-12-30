@@ -10,21 +10,21 @@ import (
 	"time"
 
 	processing "github.com/drew138/go-graphics/processing"
-	"github.com/drew138/go-graphics/processing/kernels"
-	// kernels "github.com/drew138/go-graphics/processing/kernels"
+	kernels "github.com/drew138/go-graphics/processing/kernels"
 )
 
 func main() {
 	// f, _ := os.Open("./ej.png")
 	start := time.Now()
-	f, _ := os.Open("./lenna.png")
+	f, _ := os.Open("./sarah.jpg")
 	// f, _ := os.Open("./lenna.png")
 
 	file := io.Reader(f)
 	i, format, _ := image.Decode(file)
-	img := processing.TransformImage(i, &kernels.GaussianBlur)
+	img := processing.TransformImage(i, &kernels.EdgeDetection)
+	// img := processing.CreateNegativeImage(i)
 	// _ = processing.TransformImage(i, &kernels.EdgeDetection)
-	a, _ := os.Create("lenna-gaussian-blur." + format)
+	a, _ := os.Create("sarah." + format)
 	if format == "png" {
 		_ = png.Encode(a, img)
 	} else {
