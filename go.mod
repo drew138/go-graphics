@@ -1,3 +1,3 @@
 module github.com/drew138/go-graphics
 
-go 1.15
+go 1.17
