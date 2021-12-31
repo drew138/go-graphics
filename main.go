@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	processing "github.com/drew138/go-graphics/processing"
-	kernels "github.com/drew138/go-graphics/processing/kernels"
+	filters "github.com/drew138/go-graphics/filters"
+	kernels "github.com/drew138/go-graphics/filters/kernels"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 
 	file := io.Reader(f)
 	i, format, _ := image.Decode(file)
-	img := processing.ApplyFilter(i, kernels.EdgeDetection)
+	img := filters.ApplyFilter(i, kernels.EdgeDetection)
 	// img := processing.CreateNegativeImage(i)
 	// _ = processing.TransformImage(i, &kernels.EdgeDetection)
 	a, _ := os.Create("sarah." + format)

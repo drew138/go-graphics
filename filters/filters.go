@@ -1,10 +1,10 @@
-package processing
+package filters
 
 import (
 	"image"
 	"image/color"
 
-	"github.com/drew138/go-graphics/processing/kernels"
+	"github.com/drew138/go-graphics/filters/kernels"
 )
 
 func roundRGBValue(val float32) float32 {
