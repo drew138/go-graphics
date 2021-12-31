@@ -1,7 +1,6 @@
 package encoding
 
 import (
-	"bytes"
 	"fmt"
 	"image"
 	"image/jpeg"
@@ -20,14 +19,10 @@ func isSupportedFormat(format string) error {
 	return fmt.Errorf("image format '%v' not supported", format)
 }
 
-// EncodeBytesArrayToFile takes an array of bytes
-// to be decoded into an image and consequently encoded
-func EncodeBytesArrayToFile(bytesArr []byte, w io.Writer) error {
+// EncodeBytesArrayToFile takes an image object
+// to be encoded to the desired format
+func EncodeImageToBytes(img image.Image, format string, w io.Writer) error {
 
-	img, format, err := image.Decode(bytes.NewReader(bytesArr))
-	if err != nil {
-		return err
-	}
 	if err := isSupportedFormat(format); err != nil {
 		return err
 	}
