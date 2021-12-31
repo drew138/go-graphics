@@ -21,7 +21,7 @@ func main() {
 
 	file := io.Reader(f)
 	i, format, _ := image.Decode(file)
-	img := processing.TransformImage(i, kernels.EdgeDetection)
+	img := processing.ApplyFilter(i, kernels.EdgeDetection)
 	// img := processing.CreateNegativeImage(i)
 	// _ = processing.TransformImage(i, &kernels.EdgeDetection)
 	a, _ := os.Create("sarah." + format)

@@ -38,9 +38,9 @@ func weighedSum(img image.Image, k kernels.Kernel, x int, y int) (uint8, uint8, 
 	return uint8(r), uint8(g), uint8(b), uint8(a)
 }
 
-// TransformImage Applies a convolutional matrix
+// ApplyFilter Applies a convolutional matrix
 // (kernel) to each pixel of the image provided
-func TransformImage(i image.Image, k kernels.Kernel) *image.RGBA {
+func ApplyFilter(i image.Image, k kernels.Kernel) *image.RGBA {
 	bounds := i.Bounds()
 	rgba := image.NewRGBA(bounds)
 	width, height := bounds.Max.X, bounds.Max.Y
